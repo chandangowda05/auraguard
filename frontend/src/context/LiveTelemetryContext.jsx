@@ -171,8 +171,8 @@ export function LiveTelemetryProvider({ children }) {
   // ESP32 simulation trigger
   const simulateDeviceData = async (payload) => {
     try {
-      // This is a public endpoint, doesn't need token headers
-      const res = await fetch(`http://${window.location.hostname}:5001/api/esp32`, {
+      const apiUrl = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:5001/api`;
+      const res = await fetch(`${apiUrl}/esp32`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -204,7 +204,8 @@ export function LiveTelemetryProvider({ children }) {
       return;
     }
 
-    const socketUrl = `http://${window.location.hostname}:5001`;
+    const baseApiUrl = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:5001/api`;
+    const socketUrl = baseApiUrl.replace(/\/api$/, '');
     console.log('Connecting WebSockets to:', socketUrl);
     const newSocket = io(socketUrl);
 
