@@ -1,0 +1,203 @@
+/* DepthFold 3D Metric Cards Theme */
+
+/* ——— Core 3D shell ——— */
+.ux-parent {
+    width: 100%;
+    height: 180px; /* Optimized for dashboard grid */
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+    z-index: 10;
+}
+
+.ux-card {
+    position: relative;
+    height: 100%;
+    border-radius: 24px;
+    background: var(--ux-grad);
+    transform-style: preserve-3d;
+    transition:
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.55s ease;
+    box-shadow:
+        rgba(0, 0, 0, 0) 40px 50px 25px -40px,
+        rgba(0, 0, 0, 0.28) 0 25px 25px -5px;
+}
+
+.ux-parent:hover .ux-card {
+    transform: rotate3d(1, 1, 0, 15deg);
+    box-shadow:
+        rgba(0, 0, 0, 0.45) 28px 48px 28px -38px,
+        var(--ux-orbit) 0 0 40px -10px,
+        rgba(0, 0, 0, 0.15) 0 25px 35px 0;
+    z-index: 20;
+}
+
+/* Themes Mapping */
+.ux-parent--mint {
+    --ux-grad: linear-gradient(135deg, rgb(0, 255, 214) 0%, rgb(8, 226, 96) 100%);
+    --ux-title: #00894d;
+    --ux-body: rgba(0, 137, 78, 0.82);
+    --ux-orbit: rgba(0, 249, 203, 0.22);
+}
+
+.ux-parent--violet {
+    --ux-grad: linear-gradient(145deg, #a855f7 0%, #6366f1 40%, #ec4899 100%);
+    --ux-title: #3b0764;
+    --ux-body: rgba(59, 7, 100, 0.85);
+    --ux-orbit: rgba(216, 180, 254, 0.35);
+}
+
+.ux-parent--solar {
+    --ux-grad: linear-gradient(135deg, #fbbf24 0%, #f97316 45%, #dc2626 100%);
+    --ux-title: #7c2d12;
+    --ux-body: rgba(124, 45, 18, 0.88);
+    --ux-orbit: rgba(254, 243, 199, 0.4);
+}
+
+.ux-parent--ocean {
+    --ux-grad: linear-gradient(155deg, #22d3ee 0%, #0284c7 50%, #1e3a8a 100%);
+    --ux-title: #0c4a6e;
+    --ux-body: rgba(12, 74, 110, 0.88);
+    --ux-orbit: rgba(125, 211, 252, 0.35);
+}
+
+.ux-parent--prism {
+    --ux-grad: conic-gradient(from 200deg at 65% 35%, #22d3ee, #818cf8, #f472b6, #facc15, #22d3ee);
+    --ux-title: #0f172a;
+    --ux-body: rgba(15, 23, 42, 0.88);
+    --ux-orbit: rgba(255, 255, 255, 0.35);
+}
+
+.ux-parent--void {
+    --ux-grad: linear-gradient(160deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    --ux-title: #5eead4;
+    --ux-body: rgba(203, 213, 225, 0.82);
+    --ux-orbit: rgba(167, 139, 250, 0.25);
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.35);
+}
+
+.ux-parent--cut .ux-card {
+    border-radius: 20px;
+    clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px);
+}
+
+.ux-parent--cut .ux-glass {
+    border-radius: 18px !important;
+    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+}
+
+/* Glass Layer */
+.ux-glass {
+    transform-style: preserve-3d;
+    position: absolute;
+    inset: 6px;
+    border-radius: 20px;
+    border-top-right-radius: 60px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.6) 100%);
+    transform: translate3d(0, 0, 15px);
+    border-inline-start: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.ux-parent--void .ux-glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(15, 23, 42, 0.55) 100%);
+    border-color: rgba(148, 163, 184, 0.25);
+}
+
+/* Logo orbits */
+.ux-logo {
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.ux-circle {
+    display: block;
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    top: 0;
+    inset-inline-end: 0;
+    background: var(--ux-orbit);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.5s ease-in-out;
+}
+
+.ux-circle:nth-child(1) {
+    width: 120px;
+    transform: translate3d(0, 0, 10px);
+    top: 5px;
+    inset-inline-end: 5px;
+}
+.ux-circle:nth-child(2) {
+    width: 90px;
+    transform: translate3d(0, 0, 20px);
+    top: 20px;
+    inset-inline-end: 20px;
+    transition-delay: 0.05s;
+}
+.ux-circle:nth-child(3) {
+    width: 60px;
+    transform: translate3d(0, 0, 30px);
+    top: 35px;
+    inset-inline-end: 35px;
+    display: grid;
+    place-content: center;
+    transition-delay: 0.1s;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+}
+
+.ux-parent:hover .ux-circle:nth-child(2) {
+    transform: translate3d(0, 0, 30px);
+}
+.ux-parent:hover .ux-circle:nth-child(3) {
+    transform: translate3d(0, 0, 50px);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Content */
+.ux-content {
+    padding: 24px 80px 0 24px;
+    transform: translate3d(0, 0, 26px);
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.ux-title {
+    display: block;
+    color: var(--ux-title);
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.ux-text {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--ux-title);
+    font-size: 2.5rem;
+    line-height: 1.1;
+    font-weight: 900;
+}
+
+.ux-desc {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--ux-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
