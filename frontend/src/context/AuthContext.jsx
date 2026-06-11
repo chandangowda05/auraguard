@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const AuthContext = createContext(null);
 
-export const API_URL = `http://${window.location.hostname}:5001/api`;
+export const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? `http://${window.location.hostname}:5001/api` : 'https://auraguard-backend-t1ow.onrender.com/api');
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);

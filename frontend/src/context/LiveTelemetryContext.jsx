@@ -171,7 +171,7 @@ export function LiveTelemetryProvider({ children }) {
   // ESP32 simulation trigger
   const simulateDeviceData = async (payload) => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:5001/api`;
+      const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? `http://${window.location.hostname}:5001/api` : 'https://auraguard-backend-t1ow.onrender.com/api');
       const res = await fetch(`${apiUrl}/esp32`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -204,7 +204,7 @@ export function LiveTelemetryProvider({ children }) {
       return;
     }
 
-    const baseApiUrl = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:5001/api`;
+    const baseApiUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? `http://${window.location.hostname}:5001/api` : 'https://auraguard-backend-t1ow.onrender.com/api');
     const socketUrl = baseApiUrl.replace(/\/api$/, '');
     console.log('Connecting WebSockets to:', socketUrl);
     const newSocket = io(socketUrl);
